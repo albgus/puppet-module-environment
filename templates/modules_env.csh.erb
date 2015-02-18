@@ -1,0 +1,15 @@
+# This file is managed by Puppet.
+# DO NOT EDIT
+
+# Manpath will be reset by modulecmd if it's empty
+if ($?MANPATH) then
+  setenv MANPATH "`manpath`" # reads default configuration from /etc/man.config
+endif
+
+# Set modulepath
+setenv MODULEPATH "<%= @modulepath_real %>"
+
+# Load modules
+<% @modules.each do |item| %>
+module add <%= @item %>
+<% end %>

@@ -1,0 +1,17 @@
+# This file is managed by Puppet.
+# DO NOT EDIT
+
+# Manpath will be reset by modulecmd if it's empty
+if [ -z "${MANPATH}" ]; then
+  MANPATH=`manpath` # reads default configuration from /etc/man.config
+  export MANPATH
+fi
+
+# Set modulepath
+MODULEPATH="<%= @modulepath_real %>"
+export MODULEPATH
+
+# Load modules
+<% @modules.each do |item| %>
+module add <%= @item %>
+<% end %>
